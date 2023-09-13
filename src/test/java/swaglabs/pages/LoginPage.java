@@ -16,4 +16,7 @@ public class LoginPage extends BasePage{
     @FindBy(id= "login-button")
     public WebElement loginBtn;
 
+    @FindBy(xpath = "//h3[text()='Epic sadface: Username and password do not match any user in this service']")
+    public WebElement errorMsg;
+
 }

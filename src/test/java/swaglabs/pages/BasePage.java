@@ -10,7 +10,7 @@ import java.time.Duration;
 
 public abstract class BasePage {
 
-    private static WebDriver driver;
+    public static WebDriver driver;
     private static WebDriverWait wait5;
 
     public BasePage() {
@@ -35,5 +35,4 @@ public abstract class BasePage {
         }
         return wait5;
     }
-
 }
