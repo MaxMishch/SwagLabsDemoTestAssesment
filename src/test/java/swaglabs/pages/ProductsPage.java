@@ -1,12 +1,11 @@
-package swaglabs.runner;
+package swaglabs.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import swaglabs.pages.BasePage;
 
-public class MainPage extends BasePage {
+public class ProductsPage extends BasePage {
 
-    public MainPage() {
+    public ProductsPage() {
         super();
     }
 

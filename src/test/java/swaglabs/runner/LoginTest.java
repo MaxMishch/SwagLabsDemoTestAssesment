@@ -1,11 +1,14 @@
 package swaglabs.runner;
 
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import swaglabs.pages.LoginPage;
-import static swaglabs.pages.BasePage.getDriver;
+import swaglabs.pages.BasePage;
+import swaglabs.pages.LoginPage;;
+import swaglabs.pages.ProductsPage;
+import static swaglabs.pages.BasePage.getWait;
 import static swaglabs.utilities.ConfigurationReader.getProperty;
-
 
 public class LoginTest extends BaseTest{
 
@@ -20,20 +23,17 @@ public class LoginTest extends BaseTest{
     @Test
     public void testValidLogin() throws InterruptedException {
 
-        Thread.sleep(1000);
         loginPage = new LoginPage();
         loginPage.userName.sendKeys(getProperty("userName3"));
         loginPage.password.sendKeys(getProperty("password"));
-        loginPage.loginBtn.click();
-        Thread.sleep(1000);
-        Assert.assertEquals("Swag Labs", new MainPage().headerLogo.getText());
-        getDriver().quit();
+
+        getWait().until(ExpectedConditions.elementToBeClickable(loginPage.loginBtn)).click();
+        Assert.assertEquals("Swag Labs", new ProductsPage().headerLogo.getText());
     }
 
     @Test
     public void testInvalidLogin() throws InterruptedException {
 
-        Thread.sleep(1000);
         loginPage = new LoginPage();
         loginPage.userName.sendKeys("standard_user1");
         loginPage.password.sendKeys(getProperty("password"));

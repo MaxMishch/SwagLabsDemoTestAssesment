@@ -11,7 +11,7 @@ import java.time.Duration;
 public abstract class BasePage {
 
     public static WebDriver driver;
-    private static WebDriverWait wait5;
+    public static WebDriverWait wait;
 
     public BasePage() {
         PageFactory.initElements(getDriver(), this);
@@ -29,10 +29,10 @@ public abstract class BasePage {
         }
         return driver;
     }
-    public static WebDriverWait getWait5() {
-        if (wait5 == null) {
-            wait5 = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
+    public static WebDriverWait getWait() {
+        if (wait == null) {
+            wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
         }
-        return wait5;
+        return wait;
     }
 }
