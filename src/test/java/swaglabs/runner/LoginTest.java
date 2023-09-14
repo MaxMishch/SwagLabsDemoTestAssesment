@@ -1,18 +1,10 @@
 package swaglabs.runner;
 
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import swaglabs.pages.BasePage;
 import swaglabs.pages.LoginPage;;
-import swaglabs.pages.ProductsPage;
-import static swaglabs.pages.BasePage.getWait;
-import static swaglabs.utilities.ConfigurationReader.getProperty;
 
 public class LoginTest extends BaseTest{
-
-    LoginPage loginPage;
 
     //TC#1
     //1. Go to https://www.saucedemo.com/
@@ -21,25 +13,17 @@ public class LoginTest extends BaseTest{
     //5. Verify Title Main Page
 
     @Test
-    public void testValidLogin() throws InterruptedException {
+    public void testValidLogin() {
 
-        loginPage = new LoginPage();
-        loginPage.userName.sendKeys(getProperty("userName3"));
-        loginPage.password.sendKeys(getProperty("password"));
-
-        getWait().until(ExpectedConditions.elementToBeClickable(loginPage.loginBtn)).click();
-        Assert.assertEquals("Swag Labs", new ProductsPage().headerLogo.getText());
+        String actualLogoProducts =  new LoginPage().validLogin().headerLogo.getText();
+        String expectedLogoProducts  = "Swag Labs";
+        Assert.assertEquals(actualLogoProducts, expectedLogoProducts);
     }
 
     @Test
-    public void testInvalidLogin() throws InterruptedException {
-
-        loginPage = new LoginPage();
-        loginPage.userName.sendKeys("standard_user1");
-        loginPage.password.sendKeys(getProperty("password"));
-        loginPage.loginBtn.click();
-
+    public void testInvalidLogin() {
+        String actualErrorMsg =  new LoginPage().invalidLogin().errorMsg.getText();
         String expectedErrorMsg = "Epic sadface: Username and password do not match any user in this service";
-        Assert.assertEquals(loginPage.errorMsg.getText(), expectedErrorMsg);
+        Assert.assertEquals(actualErrorMsg, expectedErrorMsg);
     }
 }

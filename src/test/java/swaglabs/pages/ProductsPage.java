@@ -12,4 +12,18 @@ public class ProductsPage extends BasePage {
     @FindBy(xpath= "//div[@class='app_logo']")
     public WebElement headerLogo;
 
+    @FindBy(id = "react-burger-menu-btn")
+    public WebElement menuBtn;
+
+    @FindBy(id = "logout_sidebar_link")
+    public WebElement logOutBtn;
+
+    public ProductsPage menuClick() {
+        menuBtn.click();
+        return this;
+    }
+    public LoginPage logOutClick() {
+        logOutBtn.click();
+        return new LoginPage();
+    }
 }
