@@ -1,12 +1,13 @@
 package swaglabs.pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import static swaglabs.utilities.ConfigurationReader.getProperty;
 
 public class LoginPage extends BasePage{
-    public LoginPage() {
-        super();
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
     @FindBy(id= "user-name")
     public WebElement userName;
@@ -28,7 +29,7 @@ public class LoginPage extends BasePage{
         password.sendKeys(getProperty("password"));
         loginBtn.click();
 
-        return new ProductsPage();
+        return new ProductsPage(driver);
     }
 
     public LoginPage invalidLogin(){

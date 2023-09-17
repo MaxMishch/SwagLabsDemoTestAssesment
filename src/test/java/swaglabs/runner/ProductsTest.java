@@ -8,7 +8,7 @@ public class ProductsTest extends BaseTest {
 
     @Test
     public void testLogOut() {
-        String actualLogoText = new LoginPage().validLogin()
+        String actualLogoText = new LoginPage(getDriver()).validLogin()
                 .menuClick()
                 .logOutClick()
                 .loginLogo.getText();

@@ -1,12 +1,13 @@
 package swaglabs.pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ProductsPage extends BasePage {
 
-    public ProductsPage() {
-        super();
+    public ProductsPage(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(xpath= "//div[@class='app_logo']")
@@ -24,6 +25,6 @@ public class ProductsPage extends BasePage {
     }
     public LoginPage logOutClick() {
         logOutBtn.click();
-        return new LoginPage();
+        return new LoginPage(driver);
     }
 }

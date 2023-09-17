@@ -1,13 +1,37 @@
 package swaglabs.runner;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import swaglabs.utilities.ConfigurationReader;
 import java.time.Duration;
-import static swaglabs.pages.BasePage.driver;
-import static swaglabs.pages.BasePage.getDriver;
 import static swaglabs.utilities.ConfigurationReader.getProperty;
 
-public class BaseTest {
+public abstract class BaseTest {
+
+    private WebDriver driver;
+    protected WebDriverWait wait;
+    public WebDriver getDriver() {
+        if(driver == null){
+
+            String browserType = ConfigurationReader.getProperty("browser");
+
+            switch (browserType) {
+                case "chrome" -> driver = new ChromeDriver();
+                case "firefox" -> driver = new FirefoxDriver();
+            }
+        }
+        return driver;
+    }
+    public WebDriverWait getWait() {
+        if (wait == null) {
+            wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        }
+        return wait;
+    }
 
     @BeforeMethod
     protected void setUp() {
@@ -18,7 +42,9 @@ public class BaseTest {
 
     @AfterMethod
     protected void tearDown() {
-        driver.quit();
-        driver = null;
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 }

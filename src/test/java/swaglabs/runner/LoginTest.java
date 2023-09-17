@@ -15,14 +15,14 @@ public class LoginTest extends BaseTest{
     @Test
     public void testValidLogin() {
 
-        String actualLogoProducts =  new LoginPage().validLogin().headerLogo.getText();
+        String actualLogoProducts =  new LoginPage(getDriver()).validLogin().headerLogo.getText();
         String expectedLogoProducts  = "Swag Labs";
         Assert.assertEquals(actualLogoProducts, expectedLogoProducts);
     }
 
     @Test
     public void testInvalidLogin() {
-        String actualErrorMsg =  new LoginPage().invalidLogin().errorMsg.getText();
+        String actualErrorMsg =  new LoginPage(getDriver()).invalidLogin().errorMsg.getText();
         String expectedErrorMsg = "Epic sadface: Username and password do not match any user in this service";
         Assert.assertEquals(actualErrorMsg, expectedErrorMsg);
     }
