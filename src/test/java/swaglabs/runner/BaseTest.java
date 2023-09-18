@@ -2,6 +2,7 @@ package swaglabs.runner;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
@@ -13,7 +14,7 @@ import static swaglabs.utilities.ConfigurationReader.getProperty;
 public abstract class BaseTest {
 
     private WebDriver driver;
-    protected WebDriverWait wait;
+    private WebDriverWait wait;
     public WebDriver getDriver() {
         if(driver == null){
 
@@ -22,6 +23,7 @@ public abstract class BaseTest {
             switch (browserType) {
                 case "chrome" -> driver = new ChromeDriver();
                 case "firefox" -> driver = new FirefoxDriver();
+                case "edge" -> driver = new EdgeDriver();
             }
         }
         return driver;
@@ -36,7 +38,7 @@ public abstract class BaseTest {
     @BeforeMethod
     protected void setUp() {
         getDriver().get(getProperty("swagLabs.url"));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5000));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.manage().window().maximize();
     }
 

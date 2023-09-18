@@ -7,8 +7,8 @@ import swaglabs.pages.LoginPage;
 public class ProductsTest extends BaseTest {
 
     @Test
-    public void testLogOut() {
-        String actualLogoText = new LoginPage(getDriver()).validLogin()
+    public void testLogOut(int numUser) {
+        String actualLogoText = new LoginPage(getDriver()).validLogin(numUser)
                 .menuClick()
                 .logOutClick()
                 .loginLogo.getText();

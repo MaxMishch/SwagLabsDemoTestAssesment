@@ -18,17 +18,19 @@ public class LoginPage extends BasePage{
     @FindBy(id= "login-button")
     public WebElement loginBtn;
 
-    @FindBy(xpath = "//h3[text()='Epic sadface: Username and password do not match any user in this service']")
+    @FindBy(xpath = "//div/form/div[3]")
     public WebElement errorMsg;
+
+//    @FindBy(xpath = "//h3[text()='Epic sadface: Sorry, this user has been locked out.']")
+//    public WebElement errorMsgUserBlocked;
 
     @FindBy(xpath = "//div[.='Swag Labs']")
     public WebElement loginLogo;
 
-    public ProductsPage validLogin(){
-        userName.sendKeys(getProperty("userName3"));
+    public ProductsPage validLogin(int num){
+        userName.sendKeys(getProperty("userName" + num));
         password.sendKeys(getProperty("password"));
         loginBtn.click();
-
         return new ProductsPage(driver);
     }
 
