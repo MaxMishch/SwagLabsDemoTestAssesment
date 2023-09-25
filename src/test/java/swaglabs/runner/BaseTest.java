@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import swaglabs.utilities.ConfigurationReader;
 import java.time.Duration;
 import static swaglabs.utilities.ConfigurationReader.getProperty;
@@ -49,4 +50,7 @@ public abstract class BaseTest {
             driver = null;
         }
     }
+    @DataProvider(name = "LoginFourUsers")
+    public Object[][] getUserName() {
+        return new Object[][]{{"User", 1}, {"User", 2}, {"User", 3}, {"User", 4}};}
 }
