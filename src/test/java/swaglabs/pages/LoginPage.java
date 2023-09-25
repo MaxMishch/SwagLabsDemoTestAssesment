@@ -42,4 +42,12 @@ public class LoginPage extends BasePage{
         return this;
     }
 
+    public ProductsPage validLogin() {
+        userName.sendKeys("standard_user");
+        password.sendKeys("secret_sauce");
+        loginBtn.click();
+
+        return new ProductsPage(driver);
+    }
+
 }

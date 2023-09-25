@@ -19,6 +19,12 @@ public class ProductsPage extends BasePage {
     @FindBy(id = "logout_sidebar_link")
     public WebElement logOutBtn;
 
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    public WebElement addToCartButton;
+
+    @FindBy(id = "shopping_cart_container")
+    public WebElement cartButton;
+
     public ProductsPage menuClick() {
         menuBtn.click();
         return this;
@@ -26,5 +32,14 @@ public class ProductsPage extends BasePage {
     public LoginPage logOutClick() {
         logOutBtn.click();
         return new LoginPage(driver);
+    }
+
+    public ProductsPage addItemToCart() {
+        addToCartButton.click();
+        return new ProductsPage(driver);
+    }
+    public CartPage cartClick() {
+        cartButton.click();
+        return new CartPage(driver);
     }
 }
